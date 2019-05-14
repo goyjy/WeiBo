@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/common-parent/common-parent.iml" filepath="$PROJECT_DIR$/common-parent/common-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-parent/weibo-api/weibo-api.iml" filepath="$PROJECT_DIR$/common-parent/weibo-api/weibo-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-parent/weibo-dao/weibo-dao.iml" filepath="$PROJECT_DIR$/common-parent/weibo-dao/weibo-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-parent/weibo-manager/weibo-manager.iml" filepath="$PROJECT_DIR$/common-parent/weibo-manager/weibo-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-parent/weibo-model/weibo-model.iml" filepath="$PROJECT_DIR$/common-parent/weibo-model/weibo-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-parent/weibo-service/weibo-service.iml" filepath="$PROJECT_DIR$/common-parent/weibo-service/weibo-service.iml" />
+    </modules>
+  </component>
+</project>

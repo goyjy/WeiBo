@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="weibo-manager:war">
+    <output-path>$PROJECT_DIR$/common-parent/weibo-manager/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>weibo-manager</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="weibo-manager.war">
+      <element id="artifact" artifact-name="weibo-manager:war exploded" />
+    </root>
+  </artifact>
+</component>
