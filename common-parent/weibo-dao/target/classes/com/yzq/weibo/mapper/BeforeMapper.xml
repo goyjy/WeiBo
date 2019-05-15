@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yzq.weibo.mapper.BeforeMapper">
+
+	<select id="weibo" parameterType="java.lang.Integer" resultType="weiboList">
+		select weibo.*,user_description.nickname,user_description.headimage
+		from weibo,user_description
+		where weibo.id=#{value} and weibo.user_id=user_description.user_id 
+	</select>
+
+	<select id="weiboList" resultType="weiboList">
+		select weibo.*,user_description.nickname,user_description.headimage,
+		(select count(*) from zan where type='weibo' and type_id=weibo.id group by type_id) as count
+		from weibo,user_description
+		where weibo.user_id=user_description.user_id 
+	</select>
+	
+	<select id="findWeiboByContent" parameterType="java.lang.String" resultType="weiboList">
+		select weibo.*,user_description.nickname,user_description.headimage,
+		(select count(*) from zan where type='weibo' and type_id=weibo.id group by type_id) as count
+		from weibo,user_description
+		where weibo.user_id=user_description.user_id and weibo.content like '%${value}%'
+	</select>
+	
+	<select id="findUser" resultType="description">
+		select * from user_description
+	</select>
+	
+	<select id="findUserBynickname" parameterType="java.lang.String" resultType="description">
+		select * from user_description where nickname like '%${value}%'
+	</select>
+	
+	<select id="commentList" parameterType="java.lang.Integer" resultMap="commentListResultMap">
+		select t1.*,t3.*
+		from  
+		(select `comment`.* ,nickname,headimage
+		from `comment`,user_description
+		where `comment`.weibo_id=#{value} and user_description.user_id=`comment`.fromuser_id) as t1
+		LEFT JOIN 
+		(select t2.*,user_description.nickname tonickname,user_description.headimage toheadimage
+		from user_description,
+		(select reply.id _id,comment_id,reply_id,reply_type,reply.content reply_content,
+		reply.fromuser_id reply_fromuser_id,touser_id,reply.datetime reply_datetime,
+		user_description.nickname fromnickname,user_description.headimage fromheadimage
+		from reply,user_description
+		where reply.fromuser_id=user_description.user_id
+		order by reply_datetime desc)as t2
+		where t2.touser_id=user_description.user_id)as t3
+		ON
+		t1.id=t3.comment_id
+	</select>
+	
+	<resultMap type="com.yzq.weibo.model.CommentList" id="commentListResultMap">
+		<id column="id" property="id"/>
+		<result column="weibo_id" property="weibo_id"/>
+		<result column="content" property="content"/>
+		<result column="fromuser_id" property="fromuser_id"/>
+		<result column="datetime" property="datetime"/>
+		<result column="nickname" property="nickname"/>
+		<result column="headimage" property="headimage"/>
+		<collection property="replyUserList" ofType="com.yzq.weibo.model.ReplyUser">
+			<id column="_id" property="id"/>
+			<result column="comment_id" property="comment_id"/>
+			<result column="reply_id" property="reply_id"/>
+			<result column="reply_type" property="reply_type"/>
+			<result column="reply_content" property="content"/>
+			<result column="reply_fromuser_id" property="fromuser_id"/>
+			<result column="touser_id" property="touser_id"/>
+			<result column="reply_datetime" property="datetime"/>
+			<result column="fromnickname" property="fromnickname"/>
+			<result column="fromheadimage" property="fromheadimage"/>
+			<result column="tonickname" property="tonickname"/>
+			<result column="toheadimage" property="toheadimage"/>
+		</collection>
+	</resultMap>
+	
+</mapper>
