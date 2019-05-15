@@ -63,7 +63,7 @@
                             <ul class="nav navbar-nav">
                                 <li><a href="/before/homePage.do">首页</a></li>
                                 <li><a href="/before/finduser.do">发现</a></li>
-                                <li><a href="#">登录</a></li>
+                                <li><a href="#" data-toggle="modal" data-target="#myModal">登录</a></li>
                                 <li><a href="#">注册</a></li>
                             </ul>
                         </div>
@@ -71,6 +71,35 @@
                 </div>
             </div>
         </nav>
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title text-center" id="exampleModalLabel">微博账号登录</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/after/login.do" method="post">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="输入账号" name="username" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="输入密码" name="password" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success btn-block center-block ">登录</button>
+                            </div>
+                            <div class="form-group">
+                                <input type="reset" class="btn btn-danger btn-block reset center-block" value="重置">
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
         <div class="na_text page-header">
             <h1 class="text-info text-center"><strong>发现新鲜事</strong></h1>
         </div>

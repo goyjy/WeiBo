@@ -1,47 +1,29 @@
 package com.yzq.weibo.service.impl;
 
+import com.yzq.weibo.mapper.UserMapper;
+import com.yzq.weibo.model.Description;
 import com.yzq.weibo.model.User;
-import com.yzq.weibo.service.IUserService;
-import com.yzq.weibo.service.base.BaseServiceImpl;
+import com.yzq.weibo.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class UserServiceImpl extends BaseServiceImpl<User> implements IUserService{
+public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
-    public User login(String username, String password) {
-        return null;
+    public User checkUserLogin(User user) throws Exception {
+        User u = userMapper.checkUserLogin(user);
+        return u;
     }
 
     @Override
-    public User findById(Integer id) {
-        return userMapper.findById(id);
-    }
-
-    @Override
-    public User findByUUID(String uuid) {
-        return null;
-    }
-
-    @Override
-    public void deleteById(Integer id) {
-
-    }
-
-    @Override
-    public void deleteByUUID(String uuid) {
-
-    }
-
-    @Override
-    public void update(User user) {
-
-    }
-
-    @Override
-    public void insert(User user) {
-
+    public Description descriptionById(int user_id) throws Exception {
+        Description description = userMapper.descriptionById(user_id);
+        return description;
     }
 }

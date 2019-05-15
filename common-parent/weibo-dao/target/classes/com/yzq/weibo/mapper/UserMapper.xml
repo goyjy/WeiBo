@@ -6,4 +6,12 @@
     <select id="findById" resultType="user" parameterType="int">
         SELECT * FROM user WHERE id = #{id}
     </select>
+
+    <select id="checkUserLogin" parameterType="com.yzq.weibo.model.User" resultType="user">
+        select * from user where username=#{username} and password=#{password}
+    </select>
+
+    <select id="descriptionById" parameterType="int" resultType="description">
+        select * from user_description where user_id=#{value}
+    </select>
 </mapper>
