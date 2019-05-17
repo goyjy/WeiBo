@@ -68,4 +68,15 @@ public class BeforeController {
         return modelAndView;
     }
 
+
+    @RequestMapping("login")
+    public String login(){
+        return "before/login";
+    }
+
+    @RequestMapping("register")
+    public String register(){
+        return "before/register";
+    }
+
 }

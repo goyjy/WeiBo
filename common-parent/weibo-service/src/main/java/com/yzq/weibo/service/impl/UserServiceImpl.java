@@ -26,4 +26,21 @@ public class UserServiceImpl implements UserService {
         Description description = userMapper.descriptionById(user_id);
         return description;
     }
+
+    @Override
+    public int insertUser(User user) throws Exception {
+        int id = userMapper.insertUser(user);
+        return id;
+    }
+
+    @Override
+    public void insertDescription(Description description) throws Exception {
+        userMapper.insertDescription(description);
+    }
+
+    @Override
+    public User checkUser(User user) throws Exception {
+        User u = userMapper.checkUser(user);
+        return u;
+    }
 }

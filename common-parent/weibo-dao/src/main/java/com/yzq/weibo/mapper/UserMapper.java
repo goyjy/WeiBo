@@ -10,4 +10,10 @@ public interface UserMapper extends BaseMapper<User> {
 
     public Description descriptionById(int user_id) throws Exception;
 
+    public int insertUser(User user) throws Exception;
+
+    public void insertDescription(Description description) throws Exception;
+
+    public User checkUser(User user)throws Exception;
+
 }

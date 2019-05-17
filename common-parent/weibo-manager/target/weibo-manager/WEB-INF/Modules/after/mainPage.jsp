@@ -47,7 +47,7 @@
             <div id="mynavbar" class="collapse navbar-collapse">
                 <div class="row">
                     <div class="col-md-4">
-                        <form class="navbar-form navbar-left" action="/before/findweibo.do" method="get">
+                        <form class="navbar-form navbar-left" action="/after/findweibo.do" method="get">
                             <div class="form-group">
                                 <input type="text" name="content" class="form-control" placeholder="输入关键字" value="${content }">
                             </div>
@@ -61,8 +61,8 @@
                     <div class="col-md-4"></div>
                     <div class="col-md-4">
                         <ul class="nav navbar-nav">
-                            <li><a href="/before/homePage.do">首页</a></li>
-                            <li><a href="/before/finduser.do">发现</a></li>
+                            <li><a href="/after/mainPage.do">首页</a></li>
+                            <li><a href="#">发现</a></li>
                         </ul>
                     </div>
                     <ul class="nav navbar-nav navbar-right">

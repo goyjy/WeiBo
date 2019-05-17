@@ -14,4 +14,21 @@
     <select id="descriptionById" parameterType="int" resultType="description">
         select * from user_description where user_id=#{value}
     </select>
+
+    <insert id="insertUser" parameterType="com.yzq.weibo.model.User">
+
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            select LAST_INSERT_ID()
+        </selectKey>
+
+        insert into user(username,password) value(#{username},#{password})
+    </insert>
+
+    <insert id="insertDescription" parameterType="com.yzq.weibo.model.Description">
+        insert into user_description(user_id,nickname) value(#{user_id},#{nickname});
+    </insert>
+
+    <select id="checkUser" parameterType="com.yzq.weibo.model.User" resultType="user">
+        select * from user where username=#{username}
+    </select>
 </mapper>
