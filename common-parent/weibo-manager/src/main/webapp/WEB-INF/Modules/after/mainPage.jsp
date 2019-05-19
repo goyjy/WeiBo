@@ -14,15 +14,34 @@
     <script src="../assets/js/holder.min.js"></script>
     <title>微博首页</title>
     <style>
-        .col{
-            background-color: #e0e0e0;
+        body{
+            background: #a6e1ec;
+        }
+
+        .media{
+            padding: 15px;
+        }
+        .container_bg{
+
+            padding-bottom: 30px;
         }
         .na{
             opacity:0.75;
         }
-        .na_text{
-            padding:30px;
+        #edit_form{
+            background: #dca7a7;
+            padding-bottom: 8px;
+            border-radius: 3px;
+            border: 1px solid #eee;
         }
+
+        #weibo_form{
+            background: #dca7a7;
+            padding-bottom: 8px;
+            border-radius: 3px;
+            border: 1px solid #eee;
+        }
+
         .media{
             background-color: white;
             padding:15px;
@@ -33,7 +52,7 @@
     </style>
 </head>
 <body>
-<div class="container">
+
     <nav class=" na navbar navbar-fixed-top navbar-inverse">
         <div class="container">
             <div class="navbar-header">
@@ -62,7 +81,7 @@
                     <div class="col-md-4">
                         <ul class="nav navbar-nav">
                             <li><a href="/after/mainPage.do">首页</a></li>
-                            <li><a href="#">发现</a></li>
+                            <li><a href="/after/findUser.do">发现</a></li>
                         </ul>
                     </div>
                     <ul class="nav navbar-nav navbar-right">
@@ -73,16 +92,44 @@
         </div>
     </nav>
 
-
-    <div class="na_text page-header">
-        <h1 class="text-info text-center"><strong>发现新鲜事</strong></h1>
+    <div class="page-header">
+        <br>
+        <br>
     </div>
-    <div class="row">
+    <div class="container container_bg">
+        <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
-            <div class="row">
+            <div class="row"  id="edit_form">
+                <span class="pull-left" style="margin:15px;">编写新鲜事</span>
+                <span class="tips pull-right" style="margin:15px;"></span>
+                <form role="form" style="margin-top: 50px;" action="writeWeibo.do" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <textarea class="form-control" rows="3" name="content"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" style="margin-top: 12px;">
+                            <div class="form-group">
+                                <input type="file" name="picture" >
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" id="send" class="btn btn-warning pull-right ">发布</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+        <div class="row" >
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="row" id="weibo_form">
                 <div class="col-md-2"></div>
-                <div class="col col-md-8">
+                <div class=" col-md-8">
                     <ul class="list-group">
                         <c:forEach items="${weiboList }" var="weibo">
                             <li class="list-group-item">
@@ -124,8 +171,8 @@
         </div>
         <div class="col-md-2"></div>
     </div>
-</div>
-<footer class="bg-info">
+    </div>
+    <footer class="bg-info">
     <br>
     <br>
     <h1 class="text-center">欢迎来到微博</h1>

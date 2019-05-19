@@ -14,6 +14,9 @@
     <script src="../assets/js/holder.min.js"></script>
     <title>微博首页</title>
     <style>
+        body{
+            background: #a6e1ec;
+        }
         .col{
            background-color: #e0e0e0;
         }
@@ -80,7 +83,7 @@
             <div class="col-md-8">
                 <div class="row">
                     <div class="col-md-2"></div>
-                    <div class="col col-md-8">
+                    <div class="col-md-8">
                     	<ul class="list-group">
                     	<c:forEach items="${weiboList }" var="weibo">
                     		<li class="list-group-item">

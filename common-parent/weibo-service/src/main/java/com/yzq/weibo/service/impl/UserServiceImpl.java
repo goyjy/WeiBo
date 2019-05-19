@@ -3,6 +3,7 @@ package com.yzq.weibo.service.impl;
 import com.yzq.weibo.mapper.UserMapper;
 import com.yzq.weibo.model.Description;
 import com.yzq.weibo.model.User;
+import com.yzq.weibo.model.Weibo;
 import com.yzq.weibo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,9 +29,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int insertUser(User user) throws Exception {
-        int id = userMapper.insertUser(user);
-        return id;
+    public void insertUser(User user) throws Exception {
+        userMapper.insertUser(user);
     }
 
     @Override
@@ -42,5 +42,10 @@ public class UserServiceImpl implements UserService {
     public User checkUser(User user) throws Exception {
         User u = userMapper.checkUser(user);
         return u;
+    }
+
+    @Override
+    public void writeWeibo(Weibo weibo) throws Exception {
+        userMapper.writeWeibo(weibo);
     }
 }

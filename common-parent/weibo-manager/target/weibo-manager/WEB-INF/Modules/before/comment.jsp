@@ -14,6 +14,9 @@
     <script src="../assets/js/holder.min.js"></script>
 <title>微博评论</title>
     <style>
+        body{
+            background: #a6e1ec;
+        }
         .col{
             background-color: whitesmoke;
         }

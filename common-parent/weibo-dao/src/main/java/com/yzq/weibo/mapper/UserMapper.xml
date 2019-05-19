@@ -31,4 +31,10 @@
     <select id="checkUser" parameterType="com.yzq.weibo.model.User" resultType="user">
         select * from user where username=#{username}
     </select>
+
+    <insert id="writeWeibo" parameterType="com.yzq.weibo.model.Weibo">
+        insert into
+        weibo(user_id,datetime,content,image)
+        value(#{user_id},#{datetime},#{content},#{image})
+    </insert>
 </mapper>

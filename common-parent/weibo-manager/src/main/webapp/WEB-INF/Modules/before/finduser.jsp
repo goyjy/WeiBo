@@ -14,7 +14,7 @@
     <script src="../assets/js/holder.min.js"></script>
     <style>
         body{
-            background: url("../assets/images/body_bg.jpg");
+            background: #a6e1ec;
         }
         .na{
             opacity:0.75;
@@ -60,8 +60,8 @@
                         <ul class="nav navbar-nav">
                             <li><a href="homePage.do">首页</a></li>
                             <li><a href="finduser.do">发现</a></li>
-                            <li><a href="#">登录</a></li>
-                            <li><a href="#">注册</a></li>
+                            <li><a href="/before/login.do">登录</a></li>
+                            <li><a href="/before/register.do">注册</a></li>
                         </ul>
                     </div>
                 </div>

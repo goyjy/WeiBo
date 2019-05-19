@@ -16,6 +16,7 @@
         body{
             background: #a6e1ec;
         }
+
         .na{
             opacity:0.75;
         }
@@ -58,12 +59,13 @@
                     <div class="col-md-4"></div>
                     <div class="col-md-4">
                         <ul class="nav navbar-nav">
-                            <li><a href="homePage.do">首页</a></li>
-                            <li><a href="finduser.do">发现</a></li>
-                            <li><a href="/before/login.do">登录</a></li>
-                            <li><a href="/before/register.do">注册</a></li>
+                            <li><a href="mainPage.do">首页</a></li>
+                            <li><a href="findUser.do">发现</a></li>
                         </ul>
                     </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class=""><a href="#">${description.nickname}</a></li>
+                    </ul>
                 </div>
             </div>
         </div>

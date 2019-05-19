@@ -12,7 +12,8 @@
 		select weibo.*,user_description.nickname,user_description.headimage,
 		(select count(*) from zan where type='weibo' and type_id=weibo.id group by type_id) as count
 		from weibo,user_description
-		where weibo.user_id=user_description.user_id 
+		where weibo.user_id=user_description.user_id
+		order by weibo.datetime desc
 	</select>
 	
 	<select id="findWeiboByContent" parameterType="java.lang.String" resultType="weiboList">
