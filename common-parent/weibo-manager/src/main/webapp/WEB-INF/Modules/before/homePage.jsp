@@ -79,52 +79,52 @@
             <h1 class="text-info text-center"><strong>发现新鲜事</strong></h1>
         </div>
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-8">
-                    	<ul class="list-group">
-                    	<c:forEach items="${weiboList }" var="weibo">
-                    		<li class="list-group-item">
-                    			<div class="media">
-                            <div class="media-left">
-                                <a href="#"><img class="img-circle"src="/pic/${weibo.headimage}" height="60" width="60"></a>
-                            </div>
-                            <div class="media-body">
-                                <h4><strong>${weibo.nickname }</strong></h4>
-                                <label class="text-info"> <fmt:formatDate value="${weibo.datetime}" type="both" pattern="yyyy年MM月dd日 HH:mm:ss"/></label>
-                                <p>
-                                   	${weibo.content }
-                                </p>
-                                <img src="/pic/${weibo.image }" width="250" height="250">
-                            </div>
-                            <div class="weibo_bottom media-bottom">
-                                <div class="btn-group btn-group-justified" role="group">
-                                    <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-default">转发</button>
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <ul class="list-group">
+                        <c:forEach items="${weiboList }" var="weibo">
+                            <li class="list-group-item">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="#"><img class="img-circle"src="/pic/${weibo.headimage}" height="60" width="60"></a>
                                     </div>
-                                    <div class="btn-group" role="group">
-                                    	<form method="post" action="/before/comment.do" target="_blank">
-                                    		<input type="text" name="id" value="${weibo.id }" hidden="hidden"> 
-                                    		<button type="submit" class="btn btn-default comment">评论</button>
-                                    	</form>
+                                    <div class="media-body">
+                                        <h4><strong>${weibo.nickname }</strong></h4>
+                                        <label class="text-info"> <fmt:formatDate value="${weibo.datetime}" type="both" pattern="yyyy年MM月dd日 HH:mm:ss"/></label>
+                                        <p>
+                                                ${weibo.content }
+                                        </p>
+                                        <img src="/pic/${weibo.image }" width="250" height="250">
                                     </div>
-                                    <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-default">点赞 ${weibo.count }</button>
+                                    <div class="weibo_bottom media-bottom">
+                                        <div class="btn-group btn-group-justified" role="group">
+                                            <div class="btn-group" role="group">
+                                                <button type="button" class="btn btn-default">转发</button>
+                                            </div>
+                                            <div class="btn-group" role="group">
+                                                <form method="post" action="/before/comment.do" target="_blank">
+                                                    <input type="text" name="id" value="${weibo.id }" hidden="hidden">
+                                                    <button type="submit" class="btn btn-default comment">评论</button>
+                                                </form>
+                                            </div>
+                                            <div class="btn-group" role="group">
+                                                <button type="button" class="btn btn-default">点赞 ${weibo.count }</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    		</li>
-                    	</c:forEach>
-                    	</ul>
-                    </div>
-                    <div class="col-md-2"></div>
+                            </li>
+                        </c:forEach>
+                    </ul>
                 </div>
+                <div class="col-md-2"></div>
             </div>
-            <div class="col-md-2"></div>
         </div>
+        <div class="col-md-2"></div>
+    </div>
     </div>
     <footer class="bg-info">
         <br>

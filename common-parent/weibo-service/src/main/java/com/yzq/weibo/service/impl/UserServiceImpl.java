@@ -48,4 +48,9 @@ public class UserServiceImpl implements UserService {
     public void writeWeibo(Weibo weibo) throws Exception {
         userMapper.writeWeibo(weibo);
     }
+
+    @Override
+    public void updateDescription(Description description) throws Exception {
+        userMapper.updateDescription(description);
+    }
 }

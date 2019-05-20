@@ -84,7 +84,7 @@
                     <li class="list-group-item">
                         <div class="media">
                             <div class="media-left">
-                                <a href="#"><img class="img-circle"src="/pic/${user.headimage }" height="60" width="60"></a>
+                                <a href="/after/personalPage.do?user_id=${user.user_id}" target="_blank"><img class="img-circle"src="/pic/${user.headimage }" height="60" width="60"></a>
                             </div>
                             <div class="media-body">
                                 <h4><strong>${user.nickname }</strong></h4>

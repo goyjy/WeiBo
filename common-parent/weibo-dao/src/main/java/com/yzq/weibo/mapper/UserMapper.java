@@ -19,4 +19,6 @@ public interface UserMapper extends BaseMapper<User> {
 
     public void writeWeibo(Weibo weibo) throws Exception;
 
+    public void updateDescription(Description description) throws Exception;
+
 }

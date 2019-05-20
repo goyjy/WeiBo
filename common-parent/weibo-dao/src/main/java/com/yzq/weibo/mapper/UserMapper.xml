@@ -37,4 +37,12 @@
         weibo(user_id,datetime,content,image)
         value(#{user_id},#{datetime},#{content},#{image})
     </insert>
+
+    <update id="updateDescription" parameterType="com.yzq.weibo.model.Description">
+        update user_description
+        set nickname=#{nickname},headimage=#{headimage},birthday=#{birthday},
+        sex=#{sex},phonenumber=#{phonenumber},email=#{email},personalname=#{personalname},address=#{address}
+        where user_id=#{user_id}
+
+    </update>
 </mapper>

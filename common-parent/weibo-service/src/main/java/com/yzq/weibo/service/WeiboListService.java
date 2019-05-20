@@ -16,5 +16,6 @@ public interface WeiboListService {
 	public List<WeiboList> findWeiboByContent(String content) throws Exception;
 	public List<Description> findUser() throws Exception;
 	public List<Description> findUserBynickname(String nickname) throws Exception;
+	public List<WeiboList> findWeiboByUser_id(int user_id) throws Exception;
 
 }

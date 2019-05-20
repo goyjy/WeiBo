@@ -18,4 +18,6 @@ public interface UserService {
 
     public void writeWeibo(Weibo weibo) throws Exception;
 
+    public void updateDescription(Description description) throws Exception;
+
 }

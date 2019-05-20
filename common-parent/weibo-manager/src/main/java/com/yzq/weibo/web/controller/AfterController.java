@@ -33,12 +33,12 @@ public class AfterController {
         User u = userService.checkUserLogin(user);
 
         if(u!=null){
-            System.out.println(u);
             List<WeiboList> weiboList = weiboListService.weiboList();
             modelAndView.addObject("weiboList", weiboList);
             Description description = userService.descriptionById(u.getId());
             modelAndView.setViewName("after/mainPage");
             request.getSession().setAttribute("description",description);
+            request.getSession().setAttribute("user",u);
         }else{
             modelAndView.addObject("error","用户名或密码错误");
             modelAndView.addObject("user",user);
@@ -106,7 +106,7 @@ public class AfterController {
         if(picture!=null && originalFilename!=null && originalFilename.length()>0){
 
             //存储图片的物理路径
-            String pic_path = "D:\\pic\\temp\\";
+            String pic_path = "E:\\项目\\weibo_pic\\pic\\";
 
 
             //新的图片名称
@@ -127,4 +127,60 @@ public class AfterController {
         return modelAndView;
     }
 
+    @RequestMapping("personalPage")
+    public ModelAndView personalPage(int user_id) throws Exception{
+        ModelAndView modelAndView = new ModelAndView();
+        List<WeiboList> list = weiboListService.findWeiboByUser_id(user_id);
+        Description d = userService.descriptionById(user_id);
+        modelAndView.addObject("d",d);
+        modelAndView.addObject("weiboList", list);
+        modelAndView.setViewName("after/personalPage");
+        return modelAndView;
+    }
+
+    @RequestMapping("personalInfo")
+    public ModelAndView personalInfo(HttpServletRequest request,int user_id) throws Exception {
+        ModelAndView modelAndView = new ModelAndView();
+        Description description = (Description) request.getSession().getAttribute("description");
+        if(user_id==description.getUser_id()){
+            modelAndView.addObject("d",description);
+            modelAndView.setViewName("after/personalInfo");
+        }else{
+            Description d = userService.descriptionById(user_id);
+            modelAndView.addObject("d",d);
+            modelAndView.setViewName("after/personalInfo_other");
+        }
+
+        return modelAndView;
+    }
+
+    @RequestMapping("save")
+    public ModelAndView save(HttpServletRequest request,Description description, MultipartFile picture,String birth) throws Exception{
+        System.out.println(birth);
+        ModelAndView modelAndView = new ModelAndView();
+        User user = (User) request.getSession().getAttribute("user");
+        description.setUser_id(user.getId());
+        //原始名称
+        String originalFilename = picture.getOriginalFilename();
+        //上传图片
+        if(picture!=null && originalFilename!=null && originalFilename.length()>0){
+
+            //存储图片的物理路径
+            String pic_path = "E:\\项目\\weibo_pic\\pic\\";
+
+            //新的图片名称
+            String newFileName = UUID.randomUUID() + originalFilename.substring(originalFilename.lastIndexOf("."));
+            //新图片
+            File newFile = new File(pic_path+newFileName);
+
+            //将内存中的数据写入磁盘
+            picture.transferTo(newFile);
+
+            //将新图片名称写到itemsCustom中
+            description.setHeadimage(newFileName);
+        }
+        modelAndView.addObject("d",description);
+        modelAndView.setViewName("after/personalInfo");
+        return modelAndView;
+    }
 }

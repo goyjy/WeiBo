@@ -54,5 +54,10 @@ public class WeiboListServiceImpl implements WeiboListService {
 		return list;
 	}
 
-	
+	@Override
+	public List<WeiboList> findWeiboByUser_id(int user_id) throws Exception {
+		List<WeiboList> list = beforeMapper.findWeiboByUser_id(user_id);
+		return list;
+	}
+
 }

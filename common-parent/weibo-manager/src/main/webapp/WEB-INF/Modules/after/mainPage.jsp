@@ -85,7 +85,7 @@
                         </ul>
                     </div>
                     <ul class="nav navbar-nav navbar-right">
-                        <li class=""><a href="#">${description.nickname}</a></li>
+                        <li class=""><a href="/after/personalPage.do?user_id=${description.user_id}" target="_blank">${description.nickname}</a></li>
                     </ul>
                 </div>
             </div>
@@ -103,11 +103,11 @@
             <div class="row"  id="edit_form">
                 <span class="pull-left" style="margin:15px;">编写新鲜事</span>
                 <span class="tips pull-right" style="margin:15px;"></span>
-                <form role="form" style="margin-top: 50px;" action="writeWeibo.do" method="post" enctype="multipart/form-data">
+                <form id="weibo"  style="margin-top: 50px;" action="writeWeibo.do" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <textarea class="form-control" rows="3" name="content"></textarea>
+                                <textarea class="form-control" rows="3" name="content" id="content"></textarea>
                             </div>
                         </div>
                         <div class="col-sm-12" style="margin-top: 12px;">
@@ -115,7 +115,7 @@
                                 <input type="file" name="picture" >
                             </div>
                             <div class="form-group">
-                                <button type="submit" id="send" class="btn btn-warning pull-right ">发布</button>
+                                <input type="button" id="send" class="btn btn-warning pull-right " value="发布">
                             </div>
                         </div>
                     </div>
@@ -135,7 +135,7 @@
                             <li class="list-group-item">
                                 <div class="media">
                                     <div class="media-left">
-                                        <a href="#"><img class="img-circle"src="/pic/${weibo.headimage}" height="60" width="60"></a>
+                                        <a href="/after/personalPage.do?user_id=${weibo.user_id}" target="_blank"><img class="img-circle"src="/pic/${weibo.headimage}" height="60" width="60"></a>
                                     </div>
                                     <div class="media-body">
                                         <h4><strong>${weibo.nickname }</strong></h4>
@@ -180,5 +180,18 @@
     <br>
 </footer>
 </body>
+<script >
 
+    $("#send").click(function(){
+        var textarea = document.getElementById("content").value;
+
+        if(textarea==""){
+            alert("内容不能为空!");
+            return;
+        }
+
+        document.getElementById("weibo").submit();
+    });
+
+</script>
 </html>
