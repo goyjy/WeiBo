@@ -119,6 +119,7 @@
                                         <a href="#"><img class="img-circle"src="/pic/${weibo.headimage}" height="60" width="60"></a>
                                     </div>
                                     <div class="media-body">
+                                        <button class="btn btn-warning pull-right">删除</button>
                                         <h4><strong>${weibo.nickname }</strong></h4>
                                         <label class="text-info"> <fmt:formatDate value="${weibo.datetime}" type="both" pattern="yyyy年MM月dd日 HH:mm:ss"/></label>
                                         <p>
@@ -132,7 +133,7 @@
                                                 <button type="button" class="btn btn-default">转发</button>
                                             </div>
                                             <div class="btn-group" role="group">
-                                                <form method="post" action="/before/comment.do" target="_blank">
+                                                <form method="post" action="/after/comment.do" target="_blank">
                                                     <input type="text" name="id" value="${weibo.id }" hidden="hidden">
                                                     <button type="submit" class="btn btn-default comment">评论</button>
                                                 </form>

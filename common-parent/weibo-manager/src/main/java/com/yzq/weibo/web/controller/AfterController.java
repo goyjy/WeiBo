@@ -1,9 +1,6 @@
 package com.yzq.weibo.web.controller;
 
-import com.yzq.weibo.model.Description;
-import com.yzq.weibo.model.User;
-import com.yzq.weibo.model.Weibo;
-import com.yzq.weibo.model.WeiboList;
+import com.yzq.weibo.model.*;
 import com.yzq.weibo.service.UserService;
 import com.yzq.weibo.service.WeiboListService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -106,7 +104,7 @@ public class AfterController {
         if(picture!=null && originalFilename!=null && originalFilename.length()>0){
 
             //存储图片的物理路径
-            String pic_path = "E:\\项目\\weibo_pic\\pic\\";
+            String pic_path = "D:\\pic\\temp\\";
 
 
             //新的图片名称
@@ -128,13 +126,19 @@ public class AfterController {
     }
 
     @RequestMapping("personalPage")
-    public ModelAndView personalPage(int user_id) throws Exception{
+    public ModelAndView personalPage(HttpServletRequest  request,int user_id) throws Exception{
         ModelAndView modelAndView = new ModelAndView();
+        Description description = (Description) request.getSession().getAttribute("description");
         List<WeiboList> list = weiboListService.findWeiboByUser_id(user_id);
-        Description d = userService.descriptionById(user_id);
-        modelAndView.addObject("d",d);
         modelAndView.addObject("weiboList", list);
-        modelAndView.setViewName("after/personalPage");
+        if(user_id==description.getUser_id()){
+            modelAndView.addObject("d",description);
+            modelAndView.setViewName("after/personalPage");
+        }else{
+            Description d = userService.descriptionById(user_id);
+            modelAndView.addObject("d",d);
+            modelAndView.setViewName("after/personalPage_other");
+        }
         return modelAndView;
     }
 
@@ -156,7 +160,9 @@ public class AfterController {
 
     @RequestMapping("save")
     public ModelAndView save(HttpServletRequest request,Description description, MultipartFile picture,String birth) throws Exception{
-        System.out.println(birth);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date birthday = simpleDateFormat.parse(birth);
+        description.setBirthday(birthday);
         ModelAndView modelAndView = new ModelAndView();
         User user = (User) request.getSession().getAttribute("user");
         description.setUser_id(user.getId());
@@ -166,7 +172,7 @@ public class AfterController {
         if(picture!=null && originalFilename!=null && originalFilename.length()>0){
 
             //存储图片的物理路径
-            String pic_path = "E:\\项目\\weibo_pic\\pic\\";
+            String pic_path = "D:\\pic\\temp\\";
 
             //新的图片名称
             String newFileName = UUID.randomUUID() + originalFilename.substring(originalFilename.lastIndexOf("."));
@@ -179,8 +185,29 @@ public class AfterController {
             //将新图片名称写到itemsCustom中
             description.setHeadimage(newFileName);
         }
+        userService.updateDescription(description);
+        request.getSession().setAttribute("description",description);
         modelAndView.addObject("d",description);
         modelAndView.setViewName("after/personalInfo");
+        return modelAndView;
+    }
+
+    @RequestMapping("cancel")
+    public ModelAndView cancel(HttpServletRequest request) throws Exception{
+        request.getSession().invalidate();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("before/login");
+        return modelAndView;
+    }
+
+    @RequestMapping("comment")
+    public ModelAndView comment(int id)throws Exception{
+        ModelAndView modelAndView = new ModelAndView();
+        List<CommentList> commentList = weiboListService.commentList(id);
+        WeiboList weibo = weiboListService.weibo(id);
+        modelAndView.addObject("weibo", weibo);
+        modelAndView.addObject("commentList", commentList);
+        modelAndView.setViewName("after/comment");
         return modelAndView;
     }
 }

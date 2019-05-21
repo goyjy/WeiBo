@@ -64,7 +64,8 @@
                         </ul>
                     </div>
                     <ul class="nav navbar-nav navbar-right">
-                        <li class=""><a href="#">${description.nickname}</a></li>
+                        <li class=""><a href="/after/personalPage.do?user_id=${description.user_id}" target="_blank"><strong class="text-warning">${description.nickname}</strong></a></li>
+                        <li><a href="/after/cancel.do"><strong class="text-warning">注销</strong></a></li>
                     </ul>
                 </div>
             </div>

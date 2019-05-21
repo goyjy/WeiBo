@@ -85,7 +85,8 @@
                         </ul>
                     </div>
                     <ul class="nav navbar-nav navbar-right">
-                        <li class=""><a href="/after/personalPage.do?user_id=${description.user_id}" target="_blank">${description.nickname}</a></li>
+                        <li class=""><a href="/after/personalPage.do?user_id=${description.user_id}" target="_blank"><strong class="text-warning">${description.nickname}</strong></a></li>
+                        <li><a href="/after/cancel.do"><strong class="text-warning">注销</strong></a></li>
                     </ul>
                 </div>
             </div>
@@ -151,7 +152,7 @@
                                                 <button type="button" class="btn btn-default">转发</button>
                                             </div>
                                             <div class="btn-group" role="group">
-                                                <form method="post" action="/before/comment.do" target="_blank">
+                                                <form method="post" action="/after/comment.do" target="_blank">
                                                     <input type="text" name="id" value="${weibo.id }" hidden="hidden">
                                                     <button type="submit" class="btn btn-default comment">评论</button>
                                                 </form>

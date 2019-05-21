@@ -119,7 +119,6 @@
                                         <a href="#"><img class="img-circle"src="/pic/${weibo.headimage}" height="60" width="60"></a>
                                     </div>
                                     <div class="media-body">
-                                        <button class="btn btn-warning pull-right">删除</button>
                                         <h4><strong>${weibo.nickname }</strong></h4>
                                         <label class="text-info"> <fmt:formatDate value="${weibo.datetime}" type="both" pattern="yyyy年MM月dd日 HH:mm:ss"/></label>
                                         <p>

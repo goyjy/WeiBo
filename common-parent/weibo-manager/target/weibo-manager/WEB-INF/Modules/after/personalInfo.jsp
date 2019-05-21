@@ -112,7 +112,8 @@
             <form enctype="multipart/form-data" id="personal_form" action="/after/save.do" method="post">
                 <div class="form-group">
                     <label class="text">头像：<img class="img-rounded" src="/pic/${d.headimage}" height="100" width="100"></label>
-                    <input type="file" name="picture">
+                    <input type="text" name="headimage" value="${d.headimage}" hidden="">
+                    <input type="file" name="picture" >
                     <label class="text">登录名：${user.username} <a href="#">修改密码</a></label><br>
                     <label class="text">
                         昵称：<input type="text" name="nickname" id="nickname" value="${d.nickname}">
@@ -122,7 +123,7 @@
                     </label><br>
                     <label class="text">
                         生日：
-                        <input type="date" name="birth" value="<fmt:formatDate value="${d.birthday}" type="both" pattern="yyyy-MM-dd"/>">
+                        <input type="date" id="birthday" name="birth" value="<fmt:formatDate value="${d.birthday}" type="both" pattern="yyyy-MM-dd"/>">
                     </label><br>
                     <label class="text">
                         联系电话：<input type="text" name="phonenumber" value="${d.phonenumber}">
@@ -149,6 +150,7 @@
 <script>
     $("#save").click(function(){
         var nickname = document.getElementById("nickname").value;
+        var birthday = document.getElementById("birthday").value;
         var sex = document.getElementById("sex").value;
         if(nickname==""){
             alert("昵称不能为空");
@@ -157,6 +159,11 @@
 
         if(sex!='男'&&sex!='女'){
             alert("性别填写有误！");
+            return;
+        }
+
+        if(birthday==""){
+            alert("生日不能为空！");
             return;
         }
 
